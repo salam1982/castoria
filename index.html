@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كافيتيريا - تطبيق الطلب والتوصيل السريع</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FF7043;
+      --primary-dark: #F4511E;
+      --bg: #121212;
+      --card-bg: #1E1E1E;
+      --text: #FFFFFF;
+      --text-muted: #A0A0A0;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 36px 24px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+    .logo-box {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 42px;
+      margin: 0 auto 20px;
+      box-shadow: 0 10px 20px rgba(255, 112, 67, 0.3);
+    }
+    h1 { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+    p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
+    .features {
+      text-align: right;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 16px;
+      border-radius: 16px;
+      margin-bottom: 28px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #E0E0E0;
+      margin-bottom: 8px;
+    }
+    .feature-item:last-child { margin-bottom: 0; }
+    .feature-item span { font-size: 16px; }
+    .btn-download {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #FFF;
+      text-decoration: none;
+      padding: 16px 24px;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(255, 112, 67, 0.4);
+      transition: all 0.2s ease;
+      margin-bottom: 14px;
+    }
+    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(255, 112, 67, 0.5); }
+    .btn-web {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 10px;
+      transition: color 0.2s;
+    }
+    .btn-web:hover { color: var(--text); }
+    .badge {
+      display: inline-block;
+      background: rgba(0, 230, 118, 0.15);
+      color: #00E676;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="logo-box">☕</div>
+    <span class="badge">النسخة الرسمية • v1.0.0</span>
+    <h1>تطبيق كافيتيريا</h1>
+    <p class="subtitle">تصفح قائمة الطعام والمشروبات، اطلب وجبتك المفضلة، وتتبع توصيل طلبك لحظياً إلى باب منزلك.</p>
+
+    <div class="features">
+      <div class="feature-item"><span>🚀</span> طلب فوري وسريع بدون تعقيد</div>
+      <div class="feature-item"><span>📍</span> تتبع حركة السائق على الخريطة لحظياً</div>
+      <div class="feature-item"><span>💰</span> دفع عند الاستلام بالدينار الجزائري</div>
+    </div>
+
+    <!-- استبدل هذا الرابط برابط الـ APK المباشر من GitHub Releases -->
+    <a href="https://github.com/YOUR_USERNAME/caffeteria-app/releases/download/v1.0.0/app-release.apk" class="btn-download">
+      <span>📥</span> تحميل التطبيق للأندرويد (APK)
+    </a>
+
+    <!-- رابط الطلب عبر المتصفح (موقع ngrok الحالي للمحل) -->
+    <a href="https://sixtyfold-pawing-coach.ngrok-free.dev" class="btn-web">
+      أو افتح نسخة المتصفح السريعة بدون تثبيت ←
+    </a>
+  </div>
+
+</body>
+</html>
