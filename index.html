@@ -3,130 +3,293 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>كافيتيريا - تطبيق الطلب والتوصيل السريع</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <title>وجبات خفيفة ومشروبات أونلاين - الطلب والتوصيل السريع</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #FF7043;
       --primary-dark: #F4511E;
-      --bg: #121212;
-      --card-bg: #1E1E1E;
+      --accent: #FFA726;
+      --bg: #0F0F12;
+      --card-bg: rgba(26, 26, 32, 0.85);
       --text: #FFFFFF;
-      --text-muted: #A0A0A0;
+      --text-muted: #9E9EA7;
       --border: rgba(255, 255, 255, 0.08);
+      --success: #00E676;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     body {
       background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(255, 112, 67, 0.15), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(255, 167, 38, 0.08), transparent 40%);
       color: var(--text);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 20px;
+      padding: 24px 16px;
     }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      perspective: 1000px;
+    }
+
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 36px 24px;
-      max-width: 420px;
-      width: 100%;
+      border-radius: 32px;
+      padding: 40px 28px 32px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7),
+                  0 0 0 1px rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
     }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+    }
+
+    .logo-wrapper {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 20px;
+    }
+
+    .logo-glow {
+      position: absolute;
+      inset: -4px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 28px;
+      filter: blur(12px);
+      opacity: 0.45;
+    }
+
     .logo-box {
-      width: 90px;
-      height: 90px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      border-radius: 24px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2A2421, #1A1716);
+      border: 1px solid rgba(255, 112, 67, 0.3);
+      border-radius: 26px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 42px;
-      margin: 0 auto 20px;
-      box-shadow: 0 10px 20px rgba(255, 112, 67, 0.3);
+      font-size: 44px;
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
     }
-    h1 { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
-    p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
-    .features {
-      text-align: right;
-      background: rgba(255, 255, 255, 0.03);
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 230, 118, 0.1);
+      border: 1px solid rgba(0, 230, 118, 0.25);
+      color: var(--success);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 26px;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .features-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       padding: 16px;
-      border-radius: 16px;
+      border-radius: 20px;
       margin-bottom: 28px;
+      text-align: right;
     }
+
     .feature-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-size: 13px;
-      color: #E0E0E0;
-      margin-bottom: 8px;
+      font-weight: 600;
+      color: #E2E2E8;
     }
-    .feature-item:last-child { margin-bottom: 0; }
-    .feature-item span { font-size: 16px; }
+
+    .feature-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(255, 112, 67, 0.12);
+      color: var(--primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
     .btn-download {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #FFF;
+      color: #FFFFFF;
       text-decoration: none;
-      padding: 16px 24px;
-      border-radius: 16px;
+      padding: 18px 24px;
+      border-radius: 18px;
       font-size: 16px;
-      font-weight: 700;
-      box-shadow: 0 8px 20px rgba(255, 112, 67, 0.4);
-      transition: all 0.2s ease;
-      margin-bottom: 14px;
+      font-weight: 800;
+      box-shadow: 0 10px 24px -4px rgba(255, 112, 67, 0.45);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
-    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(255, 112, 67, 0.5); }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -4px rgba(255, 112, 67, 0.6);
+      filter: brightness(1.05);
+    }
+
+    .btn-download:active {
+      transform: translateY(0);
+    }
+
     .btn-web {
-      display: block;
+      display: inline-block;
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 13px;
-      padding: 10px;
-      transition: color 0.2s;
-    }
-    .btn-web:hover { color: var(--text); }
-    .badge {
-      display: inline-block;
-      background: rgba(0, 230, 118, 0.15);
-      color: #00E676;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
+      font-size: 13.5px;
       font-weight: 600;
-      margin-bottom: 16px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-web:hover {
+      color: var(--primary);
+      background: rgba(255, 112, 67, 0.08);
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.35);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <div class="logo-box">☕</div>
-    <span class="badge">النسخة الرسمية • v1.0.0</span>
-    <h1>تطبيق كافيتيريا</h1>
-    <p class="subtitle">تصفح قائمة الطعام والمشروبات، اطلب وجبتك المفضلة، وتتبع توصيل طلبك لحظياً إلى باب منزلك.</p>
+  <div class="container">
+    <div class="card">
+      
+      <!-- شعار أنيق بتأثير ضوئي -->
+      <div class="logo-wrapper">
+        <div class="logo-glow"></div>
+        <div class="logo-box">🍕</div>
+      </div>
 
-    <div class="features">
-      <div class="feature-item"><span>🚀</span> طلب فوري وسريع بدون تعقيد</div>
-      <div class="feature-item"><span>📍</span> تتبع حركة السائق على الخريطة لحظياً</div>
-      <div class="feature-item"><span>💰</span> دفع عند الاستلام بالدينار الجزائري</div>
+      <!-- حالة التطبيق -->
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>مفتوح للطلب الآن • التوصيل متاح</span>
+      </div>
+
+      <!-- العنوان الجديد المطلوب -->
+      <h1>وجبات خفيفة ومشروبات أونلاين</h1>
+      <p class="subtitle">قائمتنا المتنوعة بين يديك، اطلب وجبتك ومشروبك المفضل بسهولة وتتبّع مسار التوصيل لحظياً حتى باب بيتك.</p>
+
+      <!-- مميزات الخدمة -->
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon-box">⚡</div>
+          <span>طلب فوري بدون انتظار مع حفظ عناوينك</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box">🛵</div>
+          <span>تتبع مباشر لموقع السائق على الخريطة</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box">💵</div>
+          <span>الدفع نقداً عند استلام طلبك بكل أمان</span>
+        </div>
+      </div>
+
+      <!-- زر تحميل التطبيق بالرابط الرسمي المباشر -->
+      <a href="https://github.com/salam1982/castoria/releases/download/v1.0.0/app-release.apk" class="btn-download">
+        <span style="font-size: 20px;">📥</span>
+        <span>تحميل التطبيق للأندرويد (APK)</span>
+      </a>
+
+      <!-- زر الطلب عبر المتصفح -->
+      <a href="https://sixtyfold-pawing-coach.ngrok-free.dev" class="btn-web">
+        أو تصفّح واطلب مباشرة من المتصفح ←
+      </a>
+
+      <div class="footer-note">
+        <span>🔒</span>
+        <span>تطبيق رسمي آمن وخالٍ من الإعلانات</span>
+      </div>
+
     </div>
-
-    <!-- زر تحميل التطبيق برابطك المباشر الشغال 100% -->
-    <a href="https://github.com/salam1982/castoria/releases/download/v1.0.0/app-release.apk" class="btn-download">
-      <span>📥</span> تحميل التطبيق للأندرويد (APK)
-    </a>
-
-    <!-- رابط الطلب عبر المتصفح بدون تثبيت -->
-    <a href="https://sixtyfold-pawing-coach.ngrok-free.dev" class="btn-web">
-      أو افتح نسخة المتصفح السريعة بدون تثبيت ←
-    </a>
   </div>
 
 </body>
